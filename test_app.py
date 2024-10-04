@@ -1,7 +1,15 @@
 # cd "C:\streamlit_test\streamlit_test_10"
 # streamlit run test_app.py
+
+# ダッシュボード作成用のStreamlitタブ
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
+import plotly.figure_factory as ff
+import plotly.graph_objects as go
+
+# import plotly.figure_factory as ff
+# import plotly.graph_objects as go
 
 ### ###
 ## dfのDataFrameを簡易表示
@@ -185,29 +193,31 @@ import pandas as pd
 #     st.session_state["page_control"] = 0
 #     main()
 
-# ダッシュボード作成用のStreamlitタブ
-import matplotlib.pyplot as plt
- 
-# いくつかのデータを読み込む
-data = pd.read_csv("C:\streamlit_test\streamlit_test_10\monitor_tv_log.csv")
 
-st.title('My Data Visualization Application')
+# # いくつかのデータを読み込む
+# data = pd.read_csv("C:\streamlit_test\streamlit_test_10\monitor_tv_log.csv")
+
+# st.title('My Data Visualization Application')
  
-# タブを作成する
-tab_titles = ['棒グラフ', '散布図', 'ヒートマップ']
-tabs = st.tabs(tab_titles)
+# # タブを作成する
+# tab_titles = ['棒グラフ', '散布図', 'ヒートマップ']
+# tabs = st.tabs(tab_titles)
  
-# 各タブにコンテンツを追加する
-with tabs[0]:
-    st.header('棒グラフ')
-    st.bar_chart(data)
+# # 各タブにコンテンツを追加する
+# with tabs[0]:
+#     st.header('棒グラフ')
+#     st.bar_chart(data)
  
-with tabs[1]:
-    st.header('散布図')
-    fig, ax = plt.subplots()
-    ax.scatter(data['x'], data['y'])
-    st.pyplot(fig)
- 
-with tabs[2]:
-    st.header('ヒートマップ')
-    st.heatmap(data.corr())
+# with tabs[1]:
+#     st.header('散布図')
+#     fig, ax = plt.subplots()
+#     ax.scatter(data['monitor'], data['end_time'])
+#     st.pyplot(fig)
+
+df = pd.read_csv('data/data_sample.csv')
+vars_cat = [var for var in df.columns if var.startswith('cat')]
+vars_cont = [var for var in df.columns if var.startswith('cont')]
+
+st.set_page_config(layout="wide")
+
+
