@@ -1,4 +1,4 @@
-# cd "C:\Users\user\OneDrive\デスクトップ"
+# cd "C:\streamlit_test\streamlit_test_10"
 # streamlit run test_app.py
 import streamlit as st
 import pandas as pd
@@ -161,4 +161,53 @@ import pandas as pd
 # st.text_input('Message', key=key)
 # st.button('Click', on_click=change_value)
 
-# 
+# # アプリのページ切り替えの流れとページ再読み込みについて
+# def main():
+#     # １ページ目表示
+#     st.sidebar.title("test_streamlit")
+#     st.markdown("## ボタンでページを変えましょう")
+#     st.sidebar.button("ページ切り替えボタン", on_click=change_page)
+
+# def change_page():
+#     # ページ切り替えボタンコールバック
+#     st.session_state["page_control"]=1
+
+# def next_page():
+#     # ２ページ目表示
+#     st.sidebar.title("ページが切り替わりました")
+#     st.markdown("## 次のページです")
+
+# # 状態保持する変数を作成して確認
+# if ("page_control" in st.session_state and
+#    st.session_state["page_control"] == 1):
+#     next_page()
+# else:
+#     st.session_state["page_control"] = 0
+#     main()
+
+# ダッシュボード作成用のStreamlitタブ
+import matplotlib.pyplot as plt
+ 
+# いくつかのデータを読み込む
+data = pd.read_csv("C:\streamlit_test\streamlit_test_10\monitor_tv_log.csv")
+
+st.title('My Data Visualization Application')
+ 
+# タブを作成する
+tab_titles = ['棒グラフ', '散布図', 'ヒートマップ']
+tabs = st.tabs(tab_titles)
+ 
+# 各タブにコンテンツを追加する
+with tabs[0]:
+    st.header('棒グラフ')
+    st.bar_chart(data)
+ 
+with tabs[1]:
+    st.header('散布図')
+    fig, ax = plt.subplots()
+    ax.scatter(data['x'], data['y'])
+    st.pyplot(fig)
+ 
+with tabs[2]:
+    st.header('ヒートマップ')
+    st.heatmap(data.corr())
