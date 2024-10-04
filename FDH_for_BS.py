@@ -1,6 +1,8 @@
 # cd "C:\streamlit_test\streamlit_test_10"
 # streamlit run FDH_for_BS.py
 
+# C:\streamlit_test\streamlit_test_10\FDH_for_BS.py 
+
 import streamlit as st
 import pandas as pd
 import pygwalker as pyg
@@ -33,3 +35,4 @@ if st.button('display'):
         st.write(df2)
     else:
         st.error('データファイル2がアップロードされてません')
+
